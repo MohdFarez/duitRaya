@@ -455,7 +455,7 @@
   <div class="setup-box">
     <div class="setup-badge">Tetapan Cabutan</div>
     <h2>Duit Raya Setup</h2>
-    <p class="setup-sub">Masukkan bajet, bilangan orang, grand prize & minimum — sistem akan agihkan tier tengah secara automatik.</p>
+    <p class="setup-sub">Masukkan bajet, bilangan orang, grand prize & minimum Â— sistem akan agihkan tier tengah secara automatik.</p>
 
     <div class="input-row">
       <div class="input-group">
@@ -471,7 +471,7 @@
         <div class="input-wrap">
           <input type="number" id="inp-count" class="setup-input no-prefix" placeholder="25" min="2" max="200">
         </div>
-        <div class="setup-err" id="err-count">2–200 orang</div>
+        <div class="setup-err" id="err-count">2Â–200 orang</div>
       </div>
     </div>
 
@@ -523,7 +523,7 @@
   </div>
   <div class="stat-pill">
     <div class="stat-lbl">BAKI</div>
-    <div class="stat-val" id="cnt-left">—</div>
+    <div class="stat-val" id="cnt-left">Â—</div>
   </div>
   <div class="stat-pill">
     <div class="stat-lbl">DIAGIH</div>
@@ -531,7 +531,7 @@
   </div>
   <div class="stat-pill">
     <div class="stat-lbl">BAKI RM</div>
-    <div class="stat-val" id="cnt-remain">—</div>
+    <div class="stat-val" id="cnt-remain">Â—</div>
   </div>
 </div>
 
@@ -601,7 +601,7 @@ function generateTiers(budget, count, grandAmt, minAmt){
   let pool = budget;
   let left = count;
 
-  /* Grand prize — user-defined */
+  /* Grand prize Â— user-defined */
   result.push({ amt: grandAmt, count: 1, grand: true });
   pool -= grandAmt;
   left -= 1;
@@ -611,7 +611,7 @@ function generateTiers(budget, count, grandAmt, minAmt){
   /* Consolation budget: minAmt * left orang */
   const consolationPool = minAmt * left;
 
-  /* Middle tiers — from remaining budget after reserving consolation */
+  /* Middle tiers Â— from remaining budget after reserving consolation */
   const midPool = pool - consolationPool;
 
   if(midPool > 0 && left > 1){
@@ -665,7 +665,7 @@ function onInputChange(){
   if(!bOk) valid = false;
 
   const cOk = !isNaN(c) && c >= 2 && c <= 200;
-  showErr('err-count', !cOk && !!document.getElementById('inp-count').value, '2–200 orang');
+  showErr('err-count', !cOk && !!document.getElementById('inp-count').value, '2Â–200 orang');
   if(!cOk) valid = false;
 
   const gOk = !isNaN(g) && g >= 1 && (!bOk || g < b);
@@ -680,14 +680,14 @@ function onInputChange(){
 
   /* Budget must cover grand + (min * rest) */
   if(valid && (g + m * (c - 1)) > b){
-    showErr('err-budget', true, `Bajet kurang — min diperlukan RM${g + m*(c-1)}`);
+    showErr('err-budget', true, `Bajet kurang Â— min diperlukan RM${g + m*(c-1)}`);
     valid = false;
   }
 
   if(valid){
     const preview = generateTiers(b, c, g, m);
     chips.innerHTML = preview.map(t =>
-      `<span class="preview-chip${t.grand?' grand':''}">${t.grand?'? ':''}RM${t.amt} ×${t.count}</span>`
+      `<span class="preview-chip${t.grand?' grand':''}">${t.grand?'? ':''}RM${t.amt} Ã—${t.count}</span>`
     ).join('');
     btnStart.disabled = false;
   } else {
@@ -718,7 +718,7 @@ function startDraw(){
 
   document.getElementById('setup-modal').style.display = 'none';
   document.getElementById('header-sub').textContent =
-    `Bajet RM${b.toLocaleString()} · ${c} orang · Grand RM${g} · Min RM${m}`;
+    `Bajet RM${b.toLocaleString()} Â· ${c} orang Â· Grand RM${g} Â· Min RM${m}`;
 
   buildLegend();
   buildGrid();
@@ -735,7 +735,7 @@ function buildLegend(){
   tiers.forEach(t => {
     const d = document.createElement('div');
     d.className = 'leg-chip' + (t.grand?' grand':'');
-    d.textContent = (t.grand?'? ':'') + 'RM'+t.amt+' ×'+t.count;
+    d.textContent = (t.grand?'? ':'') + 'RM'+t.amt+' Ã—'+t.count;
     el.appendChild(d);
   });
 }
@@ -823,7 +823,7 @@ function buildGrid(){
       spawnConfetti(c);
       if(p.grand){
         const t=document.getElementById('grand-toast');
-        document.getElementById('toast-msg').textContent=`Tahniah — Grand Prize RM${p.amt} telah dibuka!`;
+        document.getElementById('toast-msg').textContent=`Tahniah Â— Grand Prize RM${p.amt} telah dibuka!`;
         t.style.display='block';
         setTimeout(()=>t.style.display='none',4000);
       }
@@ -843,7 +843,7 @@ window.onYouTubeIframeAPIReady=function(){
     events:{
       onReady:e=>{
         e.target.setVolume(80);
-        document.getElementById('player-sub').textContent='Sedia — tekan ?';
+        document.getElementById('player-sub').textContent='Sedia Â— tekan ?';
       },
       onStateChange:e=>{
         if(e.data===YT.PlayerState.PLAYING){
